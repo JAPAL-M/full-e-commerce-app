@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "349459835004",
+    "project_id": "japal-shop",
+    "storage_bucket": "japal-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349459835004:android:0611f49f5286555473c1f9",
+        "android_client_info": {
+          "package_name": "com.ecommerce.ecommerce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349459835004-ebejh3ki11qdht8bdrgs9s1p9e7vr26l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzadRyHHThJaWEF0L-2N-Qj_yoc0ye9MI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349459835004-ebejh3ki11qdht8bdrgs9s1p9e7vr26l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "349459835004-49amimfqbnr2fv4rau7f6o9bqi8t42of.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ecommerce.ecommerceApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

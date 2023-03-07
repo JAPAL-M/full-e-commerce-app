@@ -29,6 +29,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_dismissible_tile: ^1.0.2
+  status_change: ^2.0.0
+  flutter_svg: ^1.0.0
   get: ^4.6.5
   flutter:
     sdk: flutter
@@ -44,7 +47,11 @@ dependencies:
   icon_broken: ^1.1.0
   firebase_auth: ^4.2.4
   firebase_core: ^2.4.1
+  image_picker: ^0.8.6
+  firebase_storage: ^11.0.10
+  animations: ^2.0.7
   cloud_firestore: ^4.3.1
+  hexcolor: ^3.0.1
 
 dev_dependencies:
   flutter_test:

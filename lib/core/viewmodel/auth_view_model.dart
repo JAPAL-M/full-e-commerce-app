@@ -43,29 +43,14 @@ class AuthViewModel extends GetxController {
   await auth.signInWithEmailAndPassword(
     email: email,
     password: pass
-  ).then((value) {
+  ).then((value) async{
     getUserData(value.user!.uid);
-    CacheHelper.saveData(key: 'uId', value: value.user!.uid).then((value){
-      uId = value.toString();
-      if(userModell!.statusAccount == 'User'){
-        Get.snackbar('Sign In Success', 'Enjoy!',snackPosition: SnackPosition.BOTTOM);
-        Get.offAll(HomeScreen());
-      }else if(userModell!.statusAccount == 'Admin'){
-        Get.snackbar('Sign In Success', 'Enjoy!',snackPosition: SnackPosition.BOTTOM);
-        Get.offAll(AdminScreen());
-      }else if(userModell!.statusAccount == 'Owner'){
-        Get.snackbar('Sign In Success', 'Enjoy!',snackPosition: SnackPosition.BOTTOM);
-        Get.offAll(OwnerScreen());
-      }else{
-
-      }
-    });
   });
 } on FirebaseAuthException catch (e) {
   if (e.code == 'user-not-found') {
-    Get.snackbar('Sign Up Error', 'No user found for that email.',snackPosition: SnackPosition.BOTTOM);
+    Get.snackbar('Sign In Error', 'No user found for that email.',snackPosition: SnackPosition.BOTTOM);
   } else if (e.code == 'wrong-password') {
-    Get.snackbar('Sign Up Error', 'Wrong password provided for that user.',snackPosition: SnackPosition.BOTTOM);
+    Get.snackbar('Sign In Error', 'Wrong password provided for that user.',snackPosition: SnackPosition.BOTTOM);
   }
 }
   }
@@ -81,9 +66,9 @@ class AuthViewModel extends GetxController {
   await auth.createUserWithEmailAndPassword(
     email: email,
     password: pass,
-  ).then((value) {
+  ).then((value) async{
     setDataUser(email: email, name: name, Id: value.user!.uid);
-    CacheHelper.saveData(key: 'uId', value: value.user!.uid).then((value){
+   await CacheHelper.saveData(key: 'uId', value: value.user!.uid).then((value){
       uId = value.toString();
     });
   });
@@ -115,15 +100,27 @@ class AuthViewModel extends GetxController {
     });
   }
   UserModel? userModell;
-  void getUserData(id){
-    FirebaseFirestore.instance.collection('users').doc(id).get().then((value)async{
+  void getUserData(id)async{
+   await FirebaseFirestore.instance.collection('users').doc(id).get().then((value)async{
         userModell = UserModel.fromJson(value.data()!);
-        print(value.data()!['statusAccount']);
-     await CacheHelper.saveData(key: 'accounStatus', value: value.data()!['statusAccount']).then((value){
+     await CacheHelper.saveData(key: 'accounStatus', value: value.data()!['statusAccount']).then((value)async{
           accountStatus = value.toString();
-          print(value.toString());
+          await CacheHelper.saveData(key: 'uId', value: id).then((value){
+            uId = id;
+            if(userModell!.statusAccount == 'User'){
+              Get.snackbar('Sign In Success', 'Enjoy!',snackPosition: SnackPosition.BOTTOM);
+              Get.offAll(HomeScreen());
+            }else if(userModell!.statusAccount == 'Admin'){
+              Get.snackbar('Sign In Success', 'Enjoy!',snackPosition: SnackPosition.BOTTOM);
+              Get.offAll(AdminScreen());
+            }else if(userModell!.statusAccount == 'Owner'){
+              Get.snackbar('Sign In Success', 'Enjoy!',snackPosition: SnackPosition.BOTTOM);
+              Get.offAll(OwnerScreen());
+            }else{
+
+            }
+          });
         });
-        print("value is: ${value.data()}");
       });
   }
 }

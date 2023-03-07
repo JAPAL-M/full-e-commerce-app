@@ -10,6 +10,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'core/viewmodel/cart_view_model.dart';
+
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
@@ -32,7 +34,6 @@ void main()async{
   }else{
     start = LoginScreen();
   }
-
 
   runApp(MyApp(startwidget: start,));
 }

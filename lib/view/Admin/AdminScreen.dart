@@ -19,10 +19,10 @@ class AdminScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0.0,
           actions: [
-          IconButton(onPressed: (){
-            CacheHelper.removeData(key: 'uId').then((value){
+          IconButton(onPressed: ()async{
+           await CacheHelper.removeData(key: 'uId').then((value)async{
               uId = '';
-              CacheHelper.removeData(key: 'accounStatus').then((value){
+             await CacheHelper.removeData(key: 'accounStatus').then((value){
                 accountStatus = '';
                 navigateto(context, LoginScreen());
               });

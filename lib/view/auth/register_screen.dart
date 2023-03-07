@@ -46,17 +46,19 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 40,
                     ),
                     CustomText(
                       text: 'Name',
                       color: Colors.grey,
                     ),
-                    defaultTextFormField(
+                    TextFormField(
                       controller: nameController,
+                      decoration: InputDecoration(
+                          hintText: 'Enter Your Name'
+                      ),
+                      keyboardType: TextInputType.name,
                       validator: (value) {},
-                      hint: 'Enter Your Name',
-                      type: TextInputType.text,
                     ),
                     SizedBox(
                       height: 30,
@@ -65,25 +67,29 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
                       text: 'Email',
                       color: Colors.grey,
                     ),
-                    defaultTextFormField(
+                    TextFormField(
                       controller: emailController,
+                      decoration: InputDecoration(
+                          hintText: 'Enter Your Email'
+                      ),
+                      keyboardType: TextInputType.emailAddress,
                       validator: (value) {},
-                      hint: 'Enter Your Email',
-                      type: TextInputType.emailAddress,
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 40,
                     ),
                     CustomText(
                       text: 'Password',
                       color: Colors.grey,
                     ),
-                    defaultTextFormField(
-                      obscureText: true,
+                    TextFormField(
                       controller: passController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: '********',
+                      ),
+                      keyboardType: TextInputType.visiblePassword,
                       validator: (value) {},
-                      hint: '********',
-                      type: TextInputType.visiblePassword,
                     ),
                     SizedBox(
                       height: 30,

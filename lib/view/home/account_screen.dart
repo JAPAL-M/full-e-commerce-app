@@ -13,10 +13,10 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: IconButton(onPressed: (){
-          CacheHelper.removeData(key: 'uId').then((value){
+        child: IconButton(onPressed: ()async{
+         await CacheHelper.removeData(key: 'uId').then((value)async {
             uId = '';
-            CacheHelper.removeData(key: 'accounStatus').then((value){
+           await CacheHelper.removeData(key: 'accounStatus').then((value){
               accountStatus = '';
               navigateto(context, LoginScreen());
             });

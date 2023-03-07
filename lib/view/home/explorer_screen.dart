@@ -2,8 +2,10 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:ecommerce_app/core/viewmodel/home_view_model.dart';
 import 'package:ecommerce_app/model/CategoreyModel.dart';
 import 'package:ecommerce_app/model/ProductModel.dart';
+import 'package:ecommerce_app/view/Category/categories_page.dart';
 import 'package:ecommerce_app/view/auth/login_screen.dart';
 import 'package:ecommerce_app/view/home/DetailsProduct.dart';
+import 'package:ecommerce_app/view/home/all_product.dart';
 import 'package:ecommerce_app/view/shared/components/components.dart';
 import 'package:ecommerce_app/view/shared/components/constant.dart';
 import 'package:ecommerce_app/view/shared/network/local/cache_helper.dart';
@@ -66,7 +68,7 @@ class ExplorerScreen extends StatelessWidget {
                               child: ListView.separated(
                                 physics: BouncingScrollPhysics(),
                                 itemBuilder: (context, index) =>
-                                    buildCategory(controller.categories[index]),
+                                    InkWell(onTap: (){Get.to(CategoryPage(categoriesModel: controller.categories[index]));},child: buildCategory(controller.categories[index])),
                                 separatorBuilder: (context, index) => SizedBox(
                                   width: 20,
                                 ),
@@ -81,7 +83,7 @@ class ExplorerScreen extends StatelessWidget {
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18)),
-                                Text('See all', style: TextStyle(fontSize: 16))
+                                InkWell(onTap: (){Get.to(AllProduct());},child: Text('See all', style: TextStyle(fontSize: 16)))
                               ],
                             ),
                             SizedBox(
@@ -95,10 +97,10 @@ class ExplorerScreen extends StatelessWidget {
                                   physics: BouncingScrollPhysics(),
                                   itemBuilder: (context, index) => controller
                                               .products[index].best ==
-                                          true
+                                          'true'
                                       ? InkWell(
                                     onTap: (){
-                                      navigateto(context, DetailsProductScreen(productModel: controller.products[index],));
+                                      navigateto(context, DetailsProductScreen(productModel: controller.products[index],Id: controller.productsId[index],));
                                     },
                                               child: buildProduct(controller.products[index]))
                                       : Center(
@@ -171,7 +173,7 @@ class ExplorerScreen extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Text(productModel.price.toString(),
+            Text('\$${productModel.price}',
                 style: TextStyle(fontSize: 16, color: PrimaryColor)),
           ],
         ),

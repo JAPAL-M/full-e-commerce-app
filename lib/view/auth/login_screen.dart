@@ -59,17 +59,20 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       color: Colors.grey,
                     ),
                     SizedBox(
-                      height: 60,
+                      height: 40,
                     ),
                     CustomText(
                       text: 'Email',
                       color: Colors.grey,
                     ),
-                    defaultTextFormField(
+                    SizedBox(height: 10,),
+                    TextFormField(
                       controller: emailController,
+                      decoration: InputDecoration(
+                        hintText: 'Enter Your Email'
+                      ),
+                      keyboardType: TextInputType.emailAddress,
                       validator: (value) {},
-                      hint: 'Enter Your Email',
-                      type: TextInputType.emailAddress,
                     ),
                     SizedBox(
                       height: 40,
@@ -78,12 +81,15 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       text: 'Password',
                       color: Colors.grey,
                     ),
-                    defaultTextFormField(
+                    SizedBox(height: 10,),
+                    TextFormField(
                       controller: passController,
                       obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: '********',
+                      ),
+                      keyboardType: TextInputType.visiblePassword,
                       validator: (value) {},
-                      hint: '********',
-                      type: TextInputType.visiblePassword,
                     ),
                     SizedBox(
                       height: 20,
